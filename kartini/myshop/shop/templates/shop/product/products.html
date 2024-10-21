@@ -1,0 +1,66 @@
+{% extends "shop/base.html" %}
+
+
+
+
+
+
+
+
+{% block content %}
+
+<title>{{page.title}}</title>
+
+
+
+
+
+            <div id="products-post">
+                <div class="container">
+
+
+                    <div class="row" id="Container">
+                                                <div class="col-md-12">
+                            <div class="heading-section">
+                                <h2>Товары</h2>
+                                <img src="{{ page.podcherk.url }}" alt="" >
+                            </div>
+                        </div>
+{% if  posts %}                        
+        {% for item in posts %}
+
+                        <div class="col-md-4 col-sm-6">
+                            <a href="{{ item.get_absolute_url }}">
+                            <div class="blog-post">
+                                <div class="blog-thumb">
+                                    <img src="{{item.glavnoe_photo.url}}" alt="" />
+                                </div>
+                                <div class="blog-content">
+                                    <div class="content-show">
+                                        <h4><a href="{{ item.get_absolute_url }}">{{item.name}}</a></h4>
+                                        <span>Цена: {{item.price}} грн</span>
+                                    </div>
+
+                                </div>
+                            </div>
+</a>
+                            
+                        </div>
+        {% endfor %}
+        {% endif %}
+    {% if not posts %}
+    <p class="tac">В данный момент товаров нет. Попробуйте зайти пожже</p>
+    {% endif %}
+
+
+
+                    </div>
+    
+                </div>
+            </div>
+
+
+
+
+
+{% endblock %}

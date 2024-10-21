@@ -1,0 +1,213 @@
+{% extends "shop/base.html" %}
+
+
+
+<!-- <h1>Detail shop</h1>
+    <div class="product-detail">
+        <img src="{% if product.image %}{{ product.image.url }}{% endif %}">
+        <h1>{{ product.name }}</h1>
+        <h2><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h2>
+        <p class="price">${{ product.price }}</p>
+        <p class="price">${{ product.price }}</p>
+<form action="{% url 'cart:cart_add' product.id %}" method="post">
+    {{ cart_product_form }}
+    {% csrf_token %}
+    <input type="submit" value="Add to cart">
+</form>
+        {{ product.description|linebreaks }}
+    </div>
+
+ -->
+
+
+
+
+
+
+
+
+{% block content %}
+
+
+
+
+
+
+
+
+
+            <div id="product-post">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="heading-section">
+                                <h2>{{ product.name }}</h2>
+                                <img src="{{ page.podcherk.url }}" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div id="single-blog" class="page-section first-section">
+                        <div class="container">
+                            <div class="row">
+                                <div class="product-item col-md-12">
+                                    <div class="row">
+
+                                        <div class="col-md-8">  
+
+
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <img class="w active" data-target="#carouselExampleIndicators" data-slide-to="0"src="{{ product.photo_na_slider.url }}" alt="">
+{% for item in photos %} 
+    <img class="w" data-target="#carouselExampleIndicators" data-slide-to="{{ item.num }}"src="{{ item.photo.url }}" alt="">
+{% endfor %}
+
+
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img
+        src="{{ product.photo_na_slider.url }}"
+        class="d-block w-100"
+        alt="..."
+      />
+    </div>
+{% for item in photos %} 
+    <div class="carousel-item">
+      <img
+        src="{{ item.photo.url }}"
+        class="d-block w-100"
+        alt="..."
+      />
+    </div>
+{% endfor %}
+
+  </div>
+  <a
+    class="carousel-control-prev"
+    href="#carouselExampleIndicators"
+    role="button"
+    data-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden"></span>
+  </a>
+  <a
+    class="carousel-control-next"
+    href="#carouselExampleIndicators"
+    role="button"
+    data-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden"></span>
+  </a>
+</div>
+<!-- {% if post_item.photo1.url %}
+
+                                                <div class="image">
+                                                    <div class="image-post">
+                                                        <img src="{{ post_item.photo1.url }}" alt="">
+                                                    </div>
+                                                </div>
+{% endif %}
+{% if post_item.photo2.url %}
+                                                <div class="image">
+                                                    <div class="image-post">
+                                                        <img src="{{ post_item.photo2.url }}" alt="">
+                                                    </div>
+                                                </div>
+{% endif %} -->
+<!-- {% if post_item.photo3.url %}
+                                                <div class="image">
+                                                    <div class="image-post">
+                                                        <img src="{{ post_item.photo3.url }}" alt="">
+                                                    </div>
+                                                </div>
+{% endif %}
+{% if post_item.photo4.url %}
+                                                <div class="image">
+                                                    <div class="image-post">
+                                                        <img src="{{ post_item.photo4.url }}" alt="">
+                                                    </div>
+                                                </div>
+{% endif %}
+{% if post_item.photo5.url %}
+                                                <div class="image">
+                                                    <div class="image-post">
+                                                        <img src="{{ post_item.photo5.url }}" alt="">
+                                                    </div>
+                                                </div>
+{% endif %} -->
+
+
+
+
+                                                <div class="product-content">
+                                                    <div class="product-title">
+                                                        <h3>{{ product.name }}</h3>
+
+                                                    </div>
+                                                    <p>Цена: {{ product.price }} грн</p>
+                                                    <p>{% autoescape off %}{{ product.dopolnitelnie_xapakteristiki }}{% endautoescape %}</p>
+                                                    
+{% if product.available %}
+											<form  action="{% url 'cart:cart_add' product.id %}" method="post">
+											    {{ cart_product_form }}
+											    {% csrf_token %}
+											    <input class="btn btn-success" type="submit" value="Добавить в корзину">
+											</form>
+{% endif %}
+                                                </div>
+                                                <div class="divide-line">
+
+                                                </div>
+
+
+
+
+                                        </div>
+
+                                        <div class="col-md-3 col-md-offset-1">
+                                            <div class="side-bar">
+
+                                                <div class="news-letters">
+                                                    <h4>Характеристики</h4>
+                                                    <div class="archives-list">
+                                                        <ul>
+                                                    <p>{% autoescape off %}{{ product.polnoe_opisanie }}{% endautoescape %}</p>
+
+                                                        </ul>
+                                                    </div>        
+                                                </div>
+
+                                                <div class="recent-post">
+                                                    <h4>Новые товары</h4>
+                                                    <div class="posts">
+                                                        {% for item in posts %}
+                                                        <div class="recent-post">
+                                                            <div class="recent-post-thumb">
+                                                            	
+                                                                <img src="{{item.glavnoe_photo.url}}" alt="">
+                                                            </div>
+                                                            <div class="recent-post-info">
+                                                                <h6><a href="{{ item.get_absolute_url }}">{{item.name}}</a></h6>
+                                                                <span>Цена: {{item.price}} грн</span>
+                                                            </div>
+                                                        </div>
+                                                        {% endfor %}
+                                                    </div> 
+                                                </div>
+   
+                                            </div>
+                                        </div>     
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>     
+                </div>
+            </div>
+
+
+
+{% endblock %}

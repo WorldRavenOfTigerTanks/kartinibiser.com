@@ -1,0 +1,58 @@
+{% extends "shop/base.html" %}
+
+
+
+
+
+
+
+
+{% block content %}
+
+<title>{{page.title}}</title>
+
+
+
+
+
+
+            <div id="products-post">
+                <div class="container">
+
+
+                    <div class="row" id="Container">
+                                                <div class="col-md-12">
+                            <div class="heading-section">
+                                <h2>Категории</h2>
+                                <img src="{{ page.podcherk.url }}" alt="" >
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="container">
+                    	<div class="row">
+{% for item in category %}
+                        <div class="col-md-3 col-sm-6">
+                            <a href="\products/{{ item.id }}/">
+                            <div class="service-item">
+                                <div class="icon">
+                                    <img class="kat" src="{{item.glavnoe_photo.url}}">
+                                </div>
+                                <h4>{{item.name}}</h4>
+
+                            </div>
+                            </a>
+                        </div>
+{% endfor %}
+
+						</div>
+                    </div>
+
+
+
+
+
+
+
+{% endblock %}

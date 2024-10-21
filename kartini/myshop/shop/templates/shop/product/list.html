@@ -1,0 +1,157 @@
+{% extends "shop/base.html" %}
+
+
+
+
+
+
+
+
+
+
+
+{% block content %}
+
+<title>{{page.title}}</title>
+
+
+
+
+
+
+
+
+            
+
+            <div id="slider">
+                <div class="flexslider">
+                  <ul class="slides">
+{% for item in slider %}
+                    <li>
+                        <div class="slider-caption">
+
+                            <p>{% autoescape off %}{{ item.title }}{% endautoescape %}</p>
+                            
+                        </div>
+                      <img class="t" src="{{item.photo.url}}" alt="" />
+                    </li>
+{% endfor %}
+
+                  </ul>
+                </div>
+            </div>
+
+
+            <div id="services">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="heading-section">
+                                <h2>Категории</h2>
+                                <img src="{{ page.podcherk.url }}" alt="" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+{% for item in categories %}
+
+
+                        <div class="col-md-3 col-sm-6">
+                            <a href="\products/{{ item.id }}/">
+                            <div class="service-item">
+                                <div class="icon">
+                                    <img class="kat" src="{{item.glavnoe_photo.url}}">
+                                </div>
+                                <h4>{% autoescape off %}{{item.name}}{% endautoescape %}</h4>
+
+                            </div>
+                            </a>
+                        </div>
+
+{% endfor %}
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div id="latest-blog">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="heading-section">
+                                <h2>Новые товары</h2>
+                                <img src="{{ page.podcherk.url }}" alt="" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+    {% if not products %}
+    <p class="tac">В данный момент товаров нет. Попробуйте зайти пожже</p>
+    {% endif %}
+                        {% for item in products %}
+                        <div class="col-md-4 col-sm-6">
+                            <a href="{{ item.get_absolute_url }}">
+                            <div class="blog-post">
+                                <div class="blog-thumb">
+                                    <img src="{{ item.glavnoe_photo.url }}" alt="" />
+                                </div>
+                                <div class="blog-content">
+                                    <div class="content-show">
+                                        <h4>{{ item.name  }}</h4>
+                                        <span>Цена: {{ item.price }} грн</span>
+                                    </div>
+<!--                                     <div class="content-hide">
+                                        <p>{% autoescape off %}{{ item.content_corotkii }}{% endautoescape %}</p>
+                                    </div> -->
+                                </div>
+                            </div>
+</a>
+                            
+                        </div>
+                        {% endfor %}
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="testimonails">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="heading-section">
+                                <h2>О нас</h2>
+                                <img src="{{ page.podcherk.url }}" alt="" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="testimonails-slider">
+                                <p>{% autoescape off %}{{ page.text }}{% endautoescape %}</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+

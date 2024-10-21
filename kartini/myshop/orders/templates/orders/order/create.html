@@ -1,0 +1,62 @@
+{% extends "shop/base.html" %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+                        <div class="col-md-12">
+                            <div class="heading-section">
+                                <h2>Ваш заказ</h2>
+                                <img src="{{ page.podcherk.url }}" alt="" >
+                            </div>
+                        </div>
+
+
+
+
+<div class="mw600">
+                                <div class="shop-list">
+                                    
+                                    <ul>
+                                    {% for item in cart %}    
+                                        <li><i class="fa fa-angle-right"></i>{{ item.quantity }} x {{ item.product.name }} ${{ item.total_price }}</li>
+                                        
+
+                                    {% endfor %}
+                                    </ul>
+                                    <p>Всего: ${{ cart.get_total_price }}</p>
+                                </div>
+
+
+
+        
+    
+    <form action="." method="post" class="order-form">
+        {{ form.as_p }}
+        <p><input type="submit" class='btn btn-success' value="Заказать"></p>
+        {% csrf_token %}
+    </form> 
+</div>
+</div>
+<!-- 
+
+
+
+   <p><strong>Выбери персонажа</strong></p>
+   <p><select name="hero">
+    <option value="s1">Чебурашка</option>
+    <option value="s2" selected>Крокодил Гена</option>
+    <option value="s3">Шапокляк</option>
+    <option value="s3" label="Лариса">Крыса Лариса</option>
+   </select> 
+
+
+ -->
+
+
+
+
+
+{% endblock %}

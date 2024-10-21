@@ -1,0 +1,75 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="heading-section">
+                                <h2>Корзина</h2>
+                                <img src="{{ page.podcherk.url }}" alt="" >
+                            </div>
+                        </div>
+
+<div class="col-md-12">
+
+<div class="row">
+
+
+
+                    <div class="col-md-1"><h3>Товар</h3></div>
+
+                    <div class="col-md-3"></div>
+
+                   
+</div>
+</div>  
+
+
+        {% for item in cart %}
+
+            {% with product=item.product %}
+<div class="col-md-12 cart-item">
+
+                        <a href="{{ product.get_absolute_url }}">
+<div class="row">
+
+
+
+                            <div class="col-md-1">
+                                    <img class="w" src="
+                                {% if product.glavnoe_photo %}
+                                    {{ product.glavnoe_photo.url }}
+                                {% endif %}">
+                                </div>
+
+
+                        </a>
+
+                    <div class="col-md-4"><h4>{{ product.name }}</h4></div>
+                    <div class="col-md-2">Цена: {{item.price}} грн</div>
+                    <div class="col-md-1"><a href="{% url 'cart:cart_remove' product.id%}">Удалить</a></div>
+                   
+</div>
+</div>               
+
+            {% endwith %}
+
+        {% endfor %}
+        
+            <h1></h1>
+            <h3>Всего: {{ cart.get_total_price }} грн</h3>
+
+
+
+
+    <p class="text-right">
+        <a href="{% url 'shop:product_list' %}" class="button light btn btn-success">Продолжить</a>
+        <a href="{% url 'orders:order_create' %}" class="button btn btn-success">Заказать</a>
+    </p>
+
+
+</div>
+</div>
+{% endblock %}
